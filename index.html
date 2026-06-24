@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encompass Labs</title>
+<style>
+  :root{
+    --bg-skyblue: #E7ECEF;
+    --bg-skyblue-2: #DDE5EA;
+    --ink: #0B3A66;
+    --ink-soft: #2C5277;
+    --muted: #6E8395;
+    --line: #D7E1E8;
+    --card-bg: #F4F7F8;
+    --card-line: #D7E1E8;
+    --green-chip-bg: #C3DFA4;
+    --green-chip-text: #2F5D1F;
+    --orange-chip-bg: #FBDF75;
+    --orange-chip-text: #7A5B05;
+    --hero-headline: #AFC3D2;
+    --sales-card-from: #0B3A66;
+    --sales-card-to: #123F6E;
+    --gold: #D9A91A;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    background:var(--bg-skyblue);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ text-decoration:none; color:inherit; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  /* MARKETING HERO */
+  .hero-wrap{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:80px;
+  }
+
+  .hero-bg-lines{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  .hero-nav{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:36px 64px 0 64px;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:22px;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+  }
+  .brand .tm{
+    font-size:10px;
+    font-weight:600;
+    vertical-align:super;
+    color:var(--ink-soft);
+  }
+  .brand svg{ width:22px; height:22px; flex-shrink:0; }
+  .brand-logo{ height:45px; width:auto; display:block; }
+
+  .btn-demo{
+    background:var(--ink);
+    color:#FAFAF8;
+    border:none;
+    padding:13px 22px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:500;
+    white-space:nowrap;
+  }
+
+  .hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    max-width:900px;
+    margin:90px auto 0 auto;
+    padding:0 24px;
+  }
+
+  .hero-content h1{
+    font-size:64px;
+    line-height:1.08;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    color:var(--hero-headline);
+    margin:0;
+  }
+
+  .hero-sub{
+    margin:28px auto 0 auto;
+    max-width:560px;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+  }
+
+  .hero-form{
+    margin:36px auto 0 auto;
+    max-width:560px;
+    display:flex;
+    align-items:center;
+    background:#FFFFFF;
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:6px 6px 6px 22px;
+    box-shadow:0 1px 2px rgba(11,58,102,0.05);
+  }
+
+  .hero-form .icon{
+    width:16px;
+    height:16px;
+    margin-right:10px;
+    color:var(--gold);
+    flex-shrink:0;
+  }
+
+  .hero-form input{
+    flex:1;
+    border:none;
+    background:transparent;
+    outline:none;
+    font-size:15px;
+    color:var(--ink-soft);
+    padding:10px 0;
+  }
+  .hero-form input::placeholder{ color:var(--muted); }
+
+  .hero-form button{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    background:var(--ink);
+    border:1px solid var(--ink);
+    color:#FFFFFF;
+    font-size:14px;
+    font-weight:600;
+    padding:11px 18px;
+    border-radius:999px;
+    flex-shrink:0;
+  }
+  .hero-form button svg{ width:14px; height:14px; }
+
+  /* DASHBOARD IMAGE */
+  .dashboard-shell{
+    position:relative;
+    z-index:3;
+    max-width:1310px;
+    margin:0 auto;
+    margin-top:40px;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 30px 80px -20px rgba(11,58,102,0.22), 0 0 0 1px rgba(11,58,102,0.06);
+    background:#FFFFFF;
+    line-height:0;
+  }
+
+  .dashboard-shell img{
+    display:block;
+    width:100%;
+    height:auto;
+    aspect-ratio:1310/760;
+    object-fit:cover;
+    background:var(--card-bg);
+    color:var(--muted);
+    font-size:14px;
+    font-family:inherit;
+  }
+
+  /* VIDEO MODAL */
+  .video-modal{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    background:rgba(5,22,40,0.72);
+  }
+
+  .video-modal.open{ display:flex; }
+
+  .video-modal-inner{
+    position:relative;
+    width:100%;
+    max-width:920px;
+    background:#000;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 40px 100px -20px rgba(0,0,0,0.5);
+  }
+
+  .video-modal-inner video{
+    display:block;
+    width:100%;
+    max-height:80vh;
+    background:#000;
+  }
+
+  .video-modal-close{
+    position:absolute;
+    top:14px;
+    right:14px;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:rgba(11,58,102,0.55);
+    border:1px solid rgba(255,255,255,0.3);
+    color:#FFFFFF;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+    backdrop-filter:blur(2px);
+  }
+  .video-modal-close svg{ width:16px; height:16px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 980px){
+    .hero-content h1{ font-size:44px; }
+    .hero-nav{ padding:24px 24px 0 24px; }
+    .dashboard-shell{ border-radius:18px; }
+  }
+
+  @media (max-width: 560px){
+    .hero-content h1{ font-size:32px; }
+    .hero-sub{ font-size:15px; }
+    .hero-form{ flex-wrap:wrap; border-radius:18px; padding:12px; }
+    .hero-form input{ width:100%; order:1; padding:6px 0 10px 0; }
+    .hero-form .icon{ order:0; }
+    .hero-form button{ order:2; width:100%; justify-content:center; }
+    .btn-demo{ padding:11px 16px; font-size:13px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero-wrap">
+
+  <!-- top nav -->
+  <header class="hero-nav">
+    <div class="brand">
+      <img src="logo.svg" alt="ENCOMPASS" class="brand-logo">
+    </div>
+    <button class="btn-demo" data-open-video>Demo Video</button>
+  </header>
+
+  <!-- hero content -->
+  <section class="hero-content">
+    <h1>Find what matters.<br>Deploy what works.</h1>
+    <p class="hero-sub">Encompass is a web-based R&D intelligence platform that identifies, ranks, and surfaces technologies relevant to operational defense needs to fill the warfighter's gaps. </p>
+  </section>
+
+  <!-- dashboard image -->
+  <div class="dashboard-shell">
+    <img src="dashboard_demo.png" alt="Product dashboard preview" width="1310" height="760">
+  </div>
+
+</div>
+
+<!-- demo video modal -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" id="videoModalClose" aria-label="Close video">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <video id="demoVideo" controls playsinline poster="dashboard-placeholder.png">
+      <source src="dashboard_demo_video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var modal = document.getElementById('videoModal');
+    var video = document.getElementById('demoVideo');
+    var closeBtn = document.getElementById('videoModalClose');
+    var openTriggers = document.querySelectorAll('[data-open-video]');
+
+    function openModal(){
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      video.currentTime = 0;
+      video.play().catch(function(){ /* autoplay may be blocked; user can press play */ });
+    }
+
+    function closeModal(){
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      video.pause();
+    }
+
+    openTriggers.forEach(function(btn){
+      btn.addEventListener('click', openModal);
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', function(e){
+      if(e.target === modal){ closeModal(); }
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && modal.classList.contains('open')){ closeModal(); }
+    });
+  })();
+</script>
+
+</body>
+</html>
