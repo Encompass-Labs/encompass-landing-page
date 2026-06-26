@@ -7,21 +7,10 @@
 <style>
   :root{
     --bg-skyblue: #E7ECEF;
-    --bg-skyblue-2: #DDE5EA;
     --ink: #0B3A66;
     --ink-soft: #2C5277;
     --muted: #6E8395;
-    --line: #D7E1E8;
-    --card-bg: #F4F7F8;
-    --card-line: #D7E1E8;
-    --green-chip-bg: #C3DFA4;
-    --green-chip-text: #2F5D1F;
-    --orange-chip-bg: #FBDF75;
-    --orange-chip-text: #7A5B05;
     --hero-headline: #AFC3D2;
-    --sales-card-from: #0B3A66;
-    --sales-card-to: #123F6E;
-    --gold: #D9A91A;
     --radius-lg: 20px;
     --radius-md: 14px;
     --radius-sm: 10px;
@@ -45,13 +34,6 @@
     position:relative;
     overflow:hidden;
     padding-bottom:80px;
-  }
-
-  .hero-bg-lines{
-    position:absolute;
-    inset:0;
-    z-index:0;
-    pointer-events:none;
   }
 
   .hero-nav{
@@ -112,57 +94,10 @@
 
   .hero-sub{
     margin:28px auto 0 auto;
-    max-width:560px;
     font-size:17px;
     line-height:1.6;
     color:var(--ink-soft);
   }
-
-  .hero-form{
-    margin:36px auto 0 auto;
-    max-width:560px;
-    display:flex;
-    align-items:center;
-    background:#FFFFFF;
-    border:1px solid var(--line);
-    border-radius:999px;
-    padding:6px 6px 6px 22px;
-    box-shadow:0 1px 2px rgba(11,58,102,0.05);
-  }
-
-  .hero-form .icon{
-    width:16px;
-    height:16px;
-    margin-right:10px;
-    color:var(--gold);
-    flex-shrink:0;
-  }
-
-  .hero-form input{
-    flex:1;
-    border:none;
-    background:transparent;
-    outline:none;
-    font-size:15px;
-    color:var(--ink-soft);
-    padding:10px 0;
-  }
-  .hero-form input::placeholder{ color:var(--muted); }
-
-  .hero-form button{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    background:var(--ink);
-    border:1px solid var(--ink);
-    color:#FFFFFF;
-    font-size:14px;
-    font-weight:600;
-    padding:11px 18px;
-    border-radius:999px;
-    flex-shrink:0;
-  }
-  .hero-form button svg{ width:14px; height:14px; }
 
   /* DASHBOARD IMAGE */
   .dashboard-shell{
@@ -176,6 +111,11 @@
     box-shadow:0 30px 80px -20px rgba(11,58,102,0.22), 0 0 0 1px rgba(11,58,102,0.06);
     background:#FFFFFF;
     line-height:0;
+    transition: transform 0.2s ease;
+  }
+
+  .dashboard-shell:hover {
+    transform: translateY(-5px);
   }
 
   .dashboard-shell img{
@@ -255,6 +195,95 @@
     .hero-form button{ order:2; width:100%; justify-content:center; }
     .btn-demo{ padding:11px 16px; font-size:13px; }
   }
+
+  /* MISSION */
+  .profiles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: sans-serif;
+  }
+
+  .profile-card {
+    background-color: #f9f9f9;
+    border-radius: 18px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .profile-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-name {
+    margin: 0 0 0.5rem 0;
+    color: #333333;
+    font-size: 1.5rem;
+  }
+
+  .profile-title {
+    color: #666666;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .profile-bio {
+    color: #555555;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* PARTNERS */
+  .logo-slider {
+    display: flex;
+    overflow: hidden;
+    padding: 40px 0;
+    width: 100%;
+  }
+
+  .logo-track {
+    display: flex;
+    animation: scroll 20s linear infinite; 
+  }
+
+  .slide-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px;
+  }
+
+  .slide-item img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%); 
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -264,7 +293,7 @@
   <!-- top nav -->
   <header class="hero-nav">
     <div class="brand">
-      <img src="logo.svg" alt="ENCOMPASS" class="brand-logo">
+      <img src="assets/logo.svg" alt="ENCOMPASS" class="brand-logo">
     </div>
     <button class="btn-demo" data-open-video>Demo Video</button>
   </header>
@@ -272,14 +301,98 @@
   <!-- hero content -->
   <section class="hero-content">
     <h1>Find what matters.<br>Deploy what works.</h1>
-    <p class="hero-sub">Encompass is a web-based R&D intelligence platform that identifies, ranks, and surfaces technologies relevant to operational defense needs to fill the warfighter's gaps. </p>
+    <p class="hero-sub">Encompass is a web-based R&D intelligence platform that identifies, ranks, and surfaces technologies relevant to operational defense needs to fill the warfighter's gaps.</p>
   </section>
 
   <!-- dashboard image -->
   <div class="dashboard-shell">
-    <img src="dashboard_demo.png" alt="Product dashboard preview" width="1310" height="760">
+    <img src="assets/dashboard_demo.png" alt="Product dashboard preview" width="1310" height="760">
   </div>
 
+  <!-- about -->
+  <section class="hero-content">
+    <h1>Our Mission</h1>
+    <p class="hero-sub">After over 50 interviews with defense personnel, we found that there is a real disconnect between useful research in academia, and science advisors in warfare centers, who need to know that this research is available and ready for “transition”.</p>
+    <h2><b>We are a team of undergraduate students at the University of California, San Diego, tackling this issue.</h2>
+  </section>
+
+  <div class="profiles-container">
+    <div class="profile-card">
+      <img src="assets/chinmay.png" alt="chinmay" class="profile-img">
+      <h3 class="profile-name">Chinmay Sule</h3>
+      <p class="profile-title">Product Research & Development</p>
+      <p class="profile-bio"><a href="mailto:chinmay@encompasslabs.org">chinmay@encompasslabs.org</a></p>
+    </div>
+
+    <div class="profile-card">
+      <img src="assets/sanjana.png" alt="sanjana" class="profile-img">
+      <h3 class="profile-name">Sanjana Sarathi</h3>
+      <p class="profile-title">UX Research & Client Outreach</p>
+      <p class="profile-bio"><a href="mailto:sanjana@encompasslabs.org">sanjana@encompasslabs.org</a></p>
+    </div>
+
+    <div class="profile-card">
+      <img src="assets/rollan.png" alt="rollan" class="profile-img">
+      <h3 class="profile-name">Rollan Nguyen</h3>
+      <p class="profile-title">Software Development</p>
+      <p class="profile-bio"><a href="mailto:rollan@encompasslabs.org">rollan@encompasslabs.org</a></p>
+    </div>
+  </div>
+
+ <section class="hero-content">
+    <p class="hero-sub">Become a partner and work with us!</p>
+    <h2><b><a href="mailto:contact@encompasslabs.org">contact@encompasslabs.org</a></h2>
+  </section>
+
+<div class="logo-slider">
+
+  <div class="logo-track">
+    <div class="slide-item"><img src="assets/partners/ucsd_oic.png" alt="ucsd_oic"></div>
+    <div class="slide-item"><img src="assets/partners/niwc_pac.png" alt="niwc_pac"></div>
+      <div class="slide-item"><img src="assets/partners/diu.svg" alt="diu"></div>
+        <div class="slide-item"><img src="assets/partners/bmnt.png" alt="bmnt"></div>
+    <div class="slide-item"><img src="assets/partners/g1ve.png" alt="g1ve"></div>
+    <div class="slide-item"><img src="assets/partners/darpa.png" alt="darpa"></div>
+    <div class="slide-item"><img src="assets/partners/sandia.png" alt="sandia"></div>
+    <div class="slide-item"><img src="assets/partners/mayo_clinic.png" alt="mayo_clinic"></div>
+    <div class="slide-item"><img src="assets/partners/i4ns.png" alt="i4ns"></div>
+  </div>
+
+  <div class="logo-track">
+    <div class="slide-item"><img src="assets/partners/ucsd_oic.png" alt="ucsd_oic"></div>
+    <div class="slide-item"><img src="assets/partners/niwc_pac.png" alt="niwc_pac"></div>
+    <div class="slide-item"><img src="assets/partners/diu.svg" alt="diu"></div>
+    <div class="slide-item"><img src="assets/partners/bmnt.png" alt="bmnt"></div>
+    <div class="slide-item"><img src="assets/partners/g1ve.png" alt="g1ve"></div>
+    <div class="slide-item"><img src="assets/partners/darpa.png" alt="darpa"></div>
+    <div class="slide-item"><img src="assets/partners/sandia.png" alt="sandia"></div>
+    <div class="slide-item"><img src="assets/partners/mayo_clinic.png" alt="mayo_clinic"></div>
+    <div class="slide-item"><img src="assets/partners/i4ns.png" alt="i4ns"></div>
+  </div>
+
+  <div class="logo-track">
+    <div class="slide-item"><img src="assets/partners/ucsd_oic.png" alt="ucsd_oic"></div>
+    <div class="slide-item"><img src="assets/partners/niwc_pac.png" alt="niwc_pac"></div>
+    <div class="slide-item"><img src="assets/partners/diu.svg" alt="diu"></div>
+    <div class="slide-item"><img src="assets/partners/bmnt.png" alt="bmnt"></div>
+    <div class="slide-item"><img src="assets/partners/g1ve.png" alt="g1ve"></div>
+    <div class="slide-item"><img src="assets/partners/darpa.png" alt="darpa"></div>
+    <div class="slide-item"><img src="assets/partners/sandia.png" alt="sandia"></div>
+    <div class="slide-item"><img src="assets/partners/mayo_clinic.png" alt="mayo_clinic"></div>
+    <div class="slide-item"><img src="assets/partners/i4ns.png" alt="i4ns"></div>
+  </div>
+
+  <div class="logo-track">
+    <div class="slide-item"><img src="assets/partners/ucsd_oic.png" alt="ucsd_oic"></div>
+    <div class="slide-item"><img src="assets/partners/niwc_pac.png" alt="niwc_pac"></div>
+    <div class="slide-item"><img src="assets/partners/diu.svg" alt="diu"></div>
+    <div class="slide-item"><img src="assets/partners/bmnt.png" alt="bmnt"></div>
+    <div class="slide-item"><img src="assets/partners/g1ve.png" alt="g1ve"></div>
+    <div class="slide-item"><img src="assets/partners/darpa.png" alt="darpa"></div>
+    <div class="slide-item"><img src="assets/partners/sandia.png" alt="sandia"></div>
+    <div class="slide-item"><img src="assets/partners/mayo_clinic.png" alt="mayo_clinic"></div>
+    <div class="slide-item"><img src="assets/partners/i4ns.png" alt="i4ns"></div>
+  </div>
 </div>
 
 <!-- demo video modal -->
@@ -291,7 +404,7 @@
       </svg>
     </button>
     <video id="demoVideo" controls playsinline poster="dashboard-placeholder.png">
-      <source src="dashboard_demo_video.mp4" type="video/mp4">
+      <source src="assets/dashboard_demo_video.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
